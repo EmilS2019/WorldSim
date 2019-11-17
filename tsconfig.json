@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "target": "es6",
+      "module": "amd",
+      "watch": true,
+      "outFile": "out.js",
+      "strict": true,
+      "lib":[
+        "dom",
+        "es2015"
+      ]
+    }
+}
