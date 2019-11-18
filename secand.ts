@@ -1,7 +1,6 @@
-namespace secand{
-    
-    export function sayhi()
-    {
+namespace secand {
+
+    export function sayhi() {
         console.log("hi")
     }
 }
