@@ -5,21 +5,38 @@ var WorldSimulator;
     (function (Display) {
         class Graph {
             constructor() {
-                this.Nodes = [90, 80, 250, 330];
+                this.Nodes = [];
+                this.canvas = document.createElement("canvas");
+                this.canvas.width = 800;
+                this.canvas.height = 500;
+                document.body.appendChild(this.canvas);
+                this.ctx = this.canvas.getContext("2d");
             }
             addNode(node) {
                 this.Nodes.push(node);
             }
             Render() {
-                const ctx = window.ctx;
-                ctx.beginPath();
-                ctx.moveTo(1, this.Nodes[0]);
+                this.ctx.beginPath();
+                this.ctx.moveTo(1, this.Nodes[0]);
                 let point = 1;
                 for (const node in this.Nodes) {
-                    ctx.lineTo(point * 15, this.Nodes[node]);
+                    this.ctx.lineTo(point * 15, this.Nodes[node]);
                     point++;
                 }
-                ctx.stroke();
+                this.ctx.stroke();
+            }
+            Clear() {
+                this.canvas.width = this.canvas.width;
+            }
+            addButton(text) {
+                const button = document.createElement("button");
+                button.addEventListener("click", () => {
+                    this.addNode(Math.random() * 400);
+                    this.Clear();
+                    this.Render();
+                });
+                button.innerText = text || "Button";
+                document.body.appendChild(button);
             }
         }
         Display.Graph = Graph;
@@ -32,9 +49,6 @@ var secand;
     }
     secand.sayhi = sayhi;
 })(secand || (secand = {}));
-/*const hello = (fixed) => (dynamic) => fixed + dynamic;
-const howdy = hello("hiiii");
-console.log(howdy("I am a bbgummy bear"));*/
 /// <reference path="./secand.ts" />
 /// <reference path="./display.ts" />
 var WorldSimulator;
@@ -42,15 +56,21 @@ var WorldSimulator;
     class worldSimulator {
         static Main() {
             const graph = new WorldSimulator.Display.Graph();
-            graph.addNode(50);
-            graph.addNode(60);
-            graph.addNode(110);
+            graph.addNode(0);
             graph.Render();
+            graph.addButton("Click Me");
+            const graph2 = new WorldSimulator.Display.Graph();
+            graph2.addNode(0);
+            graph2.Render();
+            graph2.addButton("Clickz");
+            const populationData = new Data();
         }
     }
     WorldSimulator.worldSimulator = worldSimulator;
     class Data {
     }
 })(WorldSimulator || (WorldSimulator = {}));
+/*const hello = (fixed) => (dynamic) => fixed + dynamic;
+const howdy = hello("hiiii");
+console.log(howdy("I am a bbgummy bear"));*/
 WorldSimulator.worldSimulator.Main();
-// secand.sayhi();

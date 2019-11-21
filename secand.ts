@@ -5,6 +5,4 @@ namespace secand {
     }
 }
 
-/*const hello = (fixed) => (dynamic) => fixed + dynamic;
-const howdy = hello("hiiii");
-console.log(howdy("I am a bbgummy bear"));*/
+
