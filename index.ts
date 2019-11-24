@@ -16,16 +16,27 @@ namespace WorldSimulator {
             graph2.addButton("Clickz")
 
 
-            const populationData = new Data()
+            const populationData = new Data(50)
+
+
 
         }
     }
 
-    class Data {
+    interface IData {
+        dataAmount: number
+    }
 
-        
+    class Data implements IData {
 
+        public dataAmount: number
 
+        constructor(startAmount?: number) {
+            if (startAmount)
+                this.dataAmount = startAmount
+            else
+                this.dataAmount = 0
+        }
     }
 }
 
