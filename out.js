@@ -82,11 +82,14 @@ var WorldSimulator;
             graph2.Render();
             // graph2.addButton("Clickz")
             const populationData = new WorldSimulator.Data.Data(graph.canvas.height - 10);
+            let coefficient = 0.95;
             const button = document.getElementById("ntButton");
             button.addEventListener("click", () => {
                 graph.addNode(populationData.dataAmount);
                 graph.Render();
-                populationData.dataAmount = populationData.dataAmount * 0.9;
+                populationData.dataAmount = populationData.dataAmount * coefficient;
+                coefficient *= 1.15;
+                console.log(populationData.dataAmount);
             });
         }
     }
