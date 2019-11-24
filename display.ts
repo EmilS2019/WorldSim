@@ -1,8 +1,11 @@
+/// <reference path="./data.ts" />
+
 namespace WorldSimulator.Display {
     export class Graph implements IGraph {
         public Nodes: Array<number> = []
-        public ctx: CanvasRenderingContext2D
+        private ctx: CanvasRenderingContext2D
         public canvas: HTMLCanvasElement
+        public data: Data.IData = new Data.Data()
 
         constructor() {
             this.canvas = document.createElement("canvas")
@@ -37,7 +40,7 @@ namespace WorldSimulator.Display {
             const button = document.createElement("button")
 
             button.addEventListener("click", () => {
-                this.addNode(Math.random() * 400)
+                this.addNode(this.data.dataAmount)
                 this.Clear()
                 this.Render()
             })

@@ -1,41 +1,35 @@
 /// <reference path="./secand.ts" />
 /// <reference path="./display.ts" />
+/// <reference path="./data.ts" />
 
 namespace WorldSimulator {
     export class worldSimulator {
         public static Main(): void {
             const graph = new Display.Graph();
-            graph.addNode(0)
+            graph.addNode(graph.canvas.height)
             graph.Render()
-            graph.addButton("Click Me")
+            // graph.addButton("Click Me")
 
 
             const graph2 = new Display.Graph()
             graph2.addNode(0)
             graph2.Render()
-            graph2.addButton("Clickz")
+            // graph2.addButton("Clickz")
+
+            const populationData: Data.IData = new Data.Data(graph.canvas.height - 10)
+
+            const button = document.getElementById("ntButton")!
+            button.addEventListener("click", () => {
+                graph.addNode(populationData.dataAmount)
+                graph.Render()
+                populationData.dataAmount = populationData.dataAmount * 0.9
+
+            })
 
 
-            const populationData = new Data(50)
 
 
 
-        }
-    }
-
-    interface IData {
-        dataAmount: number
-    }
-
-    class Data implements IData {
-
-        public dataAmount: number
-
-        constructor(startAmount?: number) {
-            if (startAmount)
-                this.dataAmount = startAmount
-            else
-                this.dataAmount = 0
         }
     }
 }
